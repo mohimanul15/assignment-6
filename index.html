@@ -4,31 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet World</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-        @theme {
-          --color-clifford: #da373d;
-        }
-      </style>
+
+    <!-- Google font Lato added -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- fond add end -->
+    
+     <!-- Tailwind CSS Head intigration -->
+     <script src="https://cdn.tailwindcss.com"></script>
+
+     <script>
+         tailwind.config = {
+           theme: {
+             extend: {
+               colors: {
+                 test: '#FF00FF',
+                 menu_light: '#131313',
+                 btn_color_main: '#0E7A81',
+               },
+               fontFamily: {
+                 lato: ["Lato", "sans-serif"],
+               },
+             },
+           },
+         }
+       </script>
+ 
+       <!-- Tailwind Intigration End -->
+ 
+       <!-- Daisy UI Intigration -->
+       <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+       <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+       <!-- Daisy UI End -->
 </head>
-<body>
-    <header>
-        <div class="main-nav">
-            <div class="navbar bg-base-100 shadow-sm">
-                <div class="flex-1">
-                  <a class="btn btn-ghost text-xl">daisyUI</a>
+<body class="font-lato">
+    <header class="my-5">
+        <div class="main-nav container mx-auto">
+            <div class="navbar">
+                <div class="flex-1 justify-left">
+                  <a class="btn btn-ghost text-xl font-bold">
+                    <span>
+                        <img src="./images/logo.webp" alt="" srcset="">
+                    </span>
+                    PEDDY
+                  </a>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 justify-center max-sm:hidden">
                   <menu>
-                    <ul>
+                    <ul class="flex gap-5 text-menu_light opacity-60">
                         <li>Home</li>
                         <li>Shop</li>
                         <li>Contact</li>
                     </ul>
                   </menu>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 justify-end">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="56" height="56" rx="28" fill="white"/>
                         <rect x="0.5" y="0.5" width="55" height="55" rx="27.5" stroke="#0E7A81" stroke-opacity="0.2"/>
@@ -48,7 +80,22 @@
     </header>
 
     <main>
-
+        <div class="hero py-8">
+            <div class="hero-content text-center">
+              <div class="max-w-3xl container mx-auto">
+                <h3 class="text-2xl font-bold font-menu_light opacity-60">
+                    Bringing Families Together ❤️‍🔥
+                </h3>
+                <h1 class="text-7xl font-black font-menu_light py-5">
+                    Your Path to Adoption Starts Here
+                </h1>
+                <p class="text-base font-normal">
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
+                </p>
+                <button class="btn mt-5 bg-btn_color_main text-white hover:text-black">View More</button>
+              </div>
+            </div>
+          </div>
     </main>
 
     <footer>
