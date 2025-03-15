@@ -28,3 +28,18 @@ function catSelector(category,id){
     document.getElementById(category+'_'+id).classList.add('bg-btn_color_main','bg-opacity-20','rounded-full','border-opacity-100');
 
 }
+
+
+// like button Functionality
+
+function likedPet(image){
+
+    console.log(image);
+    const imgBinder = document.getElementsByClassName('liked_pets')[0];
+
+    const imageTag = document.createElement('img');
+
+    imageTag.setAttribute('src',`${image}`)
+    imgBinder.append(imageTag);
+
+}
