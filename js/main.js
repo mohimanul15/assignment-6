@@ -2,8 +2,14 @@
 
 const allCategoryApi = 'https://openapi.programming-hero.com/api/peddy/categories';
 
+const allPets = 'https://openapi.programming-hero.com/api/peddy/pets';
+
 
 apiResolver(allCategoryApi,'categoryList');
+
+//load all pets initially
+
+apiResolver(allPets,'petsList');
 
 
 // category button functionality
