@@ -24,7 +24,8 @@
 
 // Description: Fetches data of pets under a specific category, in this case, dogs. This can be used to filter pets based on their category.
 
-async function apiResolver(uri,type){
+async function apiResolver(uri,type,isSorted = false){
+
     try {
         const apiData = await fetch(uri);
 
@@ -34,7 +35,14 @@ async function apiResolver(uri,type){
             catViewer(jsonData.categories);
         }
         else if(type === 'petsList'){
+            isSorted?
+            petViewer(sortList(jsonData.pets)):
             petViewer(jsonData.pets);
+        }
+        else if(type === 'singleCatPets'){
+            isSorted?
+            singleCatViewer(sortList(jsonData.data)):
+            singleCatViewer(jsonData.data);
         }
         return
     } catch (error) {
@@ -76,14 +84,42 @@ async function apiResolver(uri,type){
 // : 
 // "Fully"
 
+//  Sort function
+function sortList(data){
+
+    const sortedData = data.sort((a,b)=>{
+        const val1 = a.price;
+        const val2 = b.price;
+
+        if(val1 < val2){
+            return 1;
+        }else if(val1 > val2){
+            return -1;
+        }else{
+            return 0;
+        }
+    });
+
+    return sortedData;
+
+}
+
+
+// single Category Pets
+
+function singleCatViewer(data){
+
+    petViewer(data);
+}
+
+// View all Pets
+
 function petViewer(data){
 
     const petBinder = document.getElementsByClassName('pets_viewer')[0];
 
     let viewer = '';
     data.forEach(element =>{
-        console.log(element);
-
 
         viewer += `
             <div class="border-2 border-menu_light border-opacity-10 p-5 rounded-xl flex flex-col">
