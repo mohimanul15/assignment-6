@@ -43,6 +43,8 @@ async function apiResolver(uri,type,isSorted = false){
             isSorted?
             singleCatViewer(sortList(jsonData.data)):
             singleCatViewer(jsonData.data);
+        }else if(type === 'singlepet'){
+            modalViewer(jsonData.petData);
         }
         return
     } catch (error) {
@@ -50,39 +52,39 @@ async function apiResolver(uri,type,isSorted = false){
     }
 }
 
+/*
+breed
+: 
+"Golden Retriever"
+category
+: 
+"Dog"
+date_of_birth
+: 
+"2023-01-15"
+gender
+: 
+"Male"
+image
+: 
+"https://i.ibb.co.com/p0w744T/pet-1.jpg"
+petId
+: 
+1
+pet_details
+: 
+"This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog."
+pet_name
+: 
+"Sunny"
+price
+: 
+1200
+vaccinated_status
+: 
+"Fully"
 
-// pets view function
-
-// // breed
-// : 
-// "Golden Retriever"
-// category
-// : 
-// "Dog"
-// date_of_birth
-// : 
-// "2023-01-15"
-// gender
-// : 
-// "Male"
-// image
-// : 
-// "https://i.ibb.co.com/p0w744T/pet-1.jpg"
-// petId
-// : 
-// 1
-// pet_details
-// : 
-// "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog."
-// pet_name
-// : 
-// "Sunny"
-// price
-// : 
-// 1200
-// vaccinated_status
-// : 
-// "Fully"
+*/
 
 //  Sort function
 function sortList(data){
@@ -262,7 +264,7 @@ function petViewer(data){
                         <h3>
                     </button>
 
-                    <button class="border-2 border-btn_color_main border-opacity-15 rounded-2xl flex-1 py-3 items-center w-full">
+                    <button class="border-2 border-btn_color_main border-opacity-15 rounded-2xl flex-1 py-3 items-center w-full" onclick="viewButton('${element.category +'_'+ element.petId}')">
                         <h3 class="font-bold text-btn_color_main text-base lg:text-lg">
                             Details
                         <h3>
@@ -289,11 +291,37 @@ function catViewer(data){
         <button onclick="catSelector('${element.category}',${element.id})" class="single_cat flex-1 border-2 border-btn_color_main border-opacity-20 rounded-2xl" id="${element.category}_${element.id}">
         <div class="outer flex flex-row p-2 lg:p-6 justify-center items-center gap-4">
                         <img src="${element.category_icon}" class=" max-w-6 lg:max-w-14">
-                        <h3 class="font-bold text-xl lg:text-2xl font-inter">${element.category}</h3>
+                        <h3 class="font-bold text-base md:text-xl lg:text-2xl font-inter">${element.category}</h3>
         </div>
         </button>
     ` 
     });
 
     catBinder.innerHTML = viewer;
+}
+
+function viewButton(petID){
+
+    const singlePetUri = `https://openapi.programming-hero.com/api/peddy/pet/${petID.split('_')[1]}`;
+
+    apiResolver(singlePetUri, 'singlepet');
+}
+
+function modalViewer(data){
+    console.log(data);
+    const modalCapture = document.getElementById('petDetails');
+
+    const imageData = document.getElementById('image_sec');
+    const imgprop = document.createElement('img');
+    imgprop.setAttribute('src',`${data.image}`);
+    imgprop.setAttribute('width','100%');
+    imgprop.classList.add('rounded-xl');
+    imageData.innerHTML = '';
+    imageData.appendChild(imgprop);
+
+
+    document.getElementById('petName').innerText = data.pet_name;
+
+
+    modalCapture.showModal();
 }
