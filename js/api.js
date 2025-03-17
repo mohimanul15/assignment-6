@@ -112,11 +112,48 @@ function singleCatViewer(data){
     petViewer(data);
 }
 
+// Blank pets viewer
+
+function blankViewer(binder){
+
+    let viewer = '';
+
+    viewer = `
+
+        <div class="bg-menu_light bg-opacity-10 py-24 rounded-3xl flex flex-col gap-5 w-full items-center">
+
+            <img src="./images/error.webp" class="max-w-40 h-auto">
+
+            <h2 class="font-lato font-black text-2xl             lg:text-4xl text-center">
+                    No Information Available
+            </h2>
+
+            <p class="text-sm lg:text-base font-medium text-menu_light mt-4 text-center max-w-4xl">
+                Sorry none availabe right now. Will be added soon , Keep on checking.
+            </p>
+
+        </div>
+
+    `
+
+    binder.classList.replace('grid', 'flex')
+
+    binder.innerHTML = viewer;
+
+}
+
 // View all Pets
 
 function petViewer(data){
 
     const petBinder = document.getElementsByClassName('pets_viewer')[0];
+
+    if(!data.length > 0){
+        blankViewer(petBinder);
+        return
+    }
+
+    petBinder.classList.replace('flex', 'grid')
 
     let viewer = '';
     data.forEach(element =>{
