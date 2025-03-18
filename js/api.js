@@ -52,40 +52,6 @@ async function apiResolver(uri,type,isSorted = false){
     }
 }
 
-/*
-breed
-: 
-"Golden Retriever"
-category
-: 
-"Dog"
-date_of_birth
-: 
-"2023-01-15"
-gender
-: 
-"Male"
-image
-: 
-"https://i.ibb.co.com/p0w744T/pet-1.jpg"
-petId
-: 
-1
-pet_details
-: 
-"This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog."
-pet_name
-: 
-"Sunny"
-price
-: 
-1200
-vaccinated_status
-: 
-"Fully"
-
-*/
-
 //  Sort function
 function sortList(data){
 
@@ -278,18 +244,18 @@ function petViewer(data){
 
         <div class="bg-gray-100 bg-opacity-20 py-24 rounded-3xl flex flex-col gap-5 w-full items-center min-h-150 justify-center">
 
-        <span class="loading loading-bars loading-xl"></span>
+            <span class="loading loading-bars loading-xl"></span>
 
         </div>
     
     `
     
     setTimeout(()=>{
-        petBinder.classList.replace('flex', 'grid');
-        petBinder.innerHTML = viewer;
+    petBinder.classList.replace('flex', 'grid');
+    petBinder.innerHTML = viewer;
+    adoptBtnFunc();
     },2000);
 
-    adoptBtnFunc();
 }
 
 // category viewer function

@@ -82,16 +82,16 @@ function currentListSort(){
 
 // Adopt button functionality
 
-function adoptBtnFunc(butID = -1){
-    adopt.push(butID);
+async function adoptBtnFunc(butID = -1){
 
     if(butID !== -1){
+        adopt.push(butID);
 
         document.getElementById('adopt_process').showModal();
 
         document.getElementById('counter').innerText = 3;
 
-        let i = 3;
+        let i = 2;
         const counterInt = setInterval(()=>{
 
             document.getElementById('counter').innerText = i;
@@ -105,7 +105,7 @@ function adoptBtnFunc(butID = -1){
 
         setTimeout(()=>{
             document.getElementById('closeAdoptMod').click();
-        },3400)
+        },3000)
     }
 
     const allAdoptBtn = document.getElementsByClassName('adopt_btn');
