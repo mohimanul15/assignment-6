@@ -52,4 +52,4 @@
 </ul>
 
 
-<h2><a href='https://ph-assignment-06-b10.netlify.app/' target="blank">https://ph-assignment-06-b10.netlify.app</a></h2>
+<h2><a href='https://ph-assignment-06-b10.netlify.app/' target="_blank">https://ph-assignment-06-b10.netlify.app</a></h2>
