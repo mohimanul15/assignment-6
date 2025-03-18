@@ -155,8 +155,6 @@ function petViewer(data){
         return
     }
 
-    petBinder.classList.replace('flex', 'grid')
-
     let viewer = '';
     data.forEach(element =>{
 
@@ -258,14 +256,14 @@ function petViewer(data){
 
                     </button>
 
-                    <button class="border-2 border-btn_color_main border-opacity-15 rounded-2xl flex-1 py-3 items-center w-full">
-                        <h3 class="font-bold text-btn_color_main text-base lg:text-lg">
+                    <button class="adopt_btn border-2 text-white border-btn_color_main border-opacity-15 rounded-2xl flex-1 py-3 items-center w-full bg-btn_color_main hover:bg-gray-200 disabled:bg-gray-400 hover:text-black" onclick="adoptBtnFunc('${element.category +'_'+ element.petId}')" id="${element.category +'_'+ element.petId}">
+                        <h3 class="font-bold text-base lg:text-lg" id="adopt_text">
                             Adopt
                         <h3>
                     </button>
 
-                    <button class="border-2 border-btn_color_main border-opacity-15 rounded-2xl flex-1 py-3 items-center w-full" onclick="viewButton('${element.category +'_'+ element.petId}')">
-                        <h3 class="font-bold text-btn_color_main text-base lg:text-lg">
+                    <button class="border-2 border-btn_color_main border-opacity-15 rounded-2xl flex-1 py-3 items-center w-full text-white hover:bg-gray-200 hover:text-black bg-btn_color_main" onclick="viewButton('${element.category +'_'+ element.petId}')">
+                        <h3 class="font-bold text-base lg:text-lg">
                             Details
                         <h3>
                     </button>
@@ -275,7 +273,23 @@ function petViewer(data){
         `
     });
 
-    petBinder.innerHTML = viewer;
+    petBinder.classList.replace('grid', 'flex');
+    petBinder.innerHTML = `
+
+        <div class="bg-gray-100 bg-opacity-20 py-24 rounded-3xl flex flex-col gap-5 w-full items-center min-h-150 justify-center">
+
+        <span class="loading loading-bars loading-xl"></span>
+
+        </div>
+    
+    `
+    
+    setTimeout(()=>{
+        petBinder.classList.replace('flex', 'grid');
+        petBinder.innerHTML = viewer;
+    },2000);
+
+    adoptBtnFunc();
 }
 
 // category viewer function
@@ -321,7 +335,12 @@ function modalViewer(data){
 
 
     document.getElementById('petName').innerText = data.pet_name;
-
+    document.getElementById('ani_breed').innerText = data.breed?data.breed:'No Data';
+    document.getElementById('ani_birth').innerText = data.date_of_birth?data.date_of_birth:'No Data';
+    document.getElementById('ani_gender').innerText = data.gender?data.gender:'No Data';
+    document.getElementById('ani_price').innerText = data.price?data.price:'No Data';
+    document.getElementById('ani_vac').innerText = data.vaccinated_status?data.vaccinated_status:'No Data';
+    document.getElementById('descrip').innerText = data.pet_details?data.pet_details:'No Data'
 
     modalCapture.showModal();
 }

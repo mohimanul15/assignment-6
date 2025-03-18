@@ -4,6 +4,10 @@ const allCategoryApi = 'https://openapi.programming-hero.com/api/peddy/categorie
 
 const allPets = 'https://openapi.programming-hero.com/api/peddy/pets';
 
+// global adopt button array for adopted pets
+
+var adopt = [];
+
 
 apiResolver(allCategoryApi,'categoryList');
 
@@ -73,4 +77,51 @@ function currentListSort(){
     apiResolver(uri,'singleCatPets',true):
     apiResolver(uri,'petsList',true);
 
+}
+
+
+// Adopt button functionality
+
+function adoptBtnFunc(butID = -1){
+    adopt.push(butID);
+
+    if(butID !== -1){
+
+        document.getElementById('adopt_process').showModal();
+
+        document.getElementById('counter').innerText = 3;
+
+        let i = 3;
+        const counterInt = setInterval(()=>{
+
+            document.getElementById('counter').innerText = i;
+            i--;
+
+            if(i == 0 ){
+                clearInterval(counterInt);
+            }
+
+        },1000);
+
+        setTimeout(()=>{
+            document.getElementById('closeAdoptMod').click();
+        },3400)
+    }
+
+    const allAdoptBtn = document.getElementsByClassName('adopt_btn');
+
+    if(adopt.length > 0){
+        for(const htmEle of allAdoptBtn){
+
+            if(adopt.includes(htmEle.getAttribute('id'))){
+                htmEle.setAttribute('disabled',true);
+                htmEle.classList.add('border-gray-600')
+                htmEle.childNodes[1].classList.add('text-gray-600');
+                htmEle.children[0].innerHTML = 'Adopted';
+            }
+            
+            // console.log(htmEle.childNodes[1]);
+        }
+    }
+    // console.log(adopt);
 }
